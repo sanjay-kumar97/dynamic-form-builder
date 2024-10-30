@@ -1,10 +1,8 @@
-import { FC, InputHTMLAttributes } from "react";
 import { twMerge } from "tailwind-merge";
 
-export const Checkbox: FC<InputHTMLAttributes<HTMLInputElement>> = ({
-  className = "",
-  ...props
-}) => {
+export const Checkbox: React.FC<
+  React.InputHTMLAttributes<HTMLInputElement>
+> = ({ className = "", ...props }) => {
   return (
     <input
       {...props}

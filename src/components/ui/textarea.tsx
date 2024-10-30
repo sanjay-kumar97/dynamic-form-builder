@@ -1,10 +1,8 @@
-import { FC, TextareaHTMLAttributes } from "react";
 import { twMerge } from "tailwind-merge";
 
-export const Textarea: FC<TextareaHTMLAttributes<HTMLTextAreaElement>> = ({
-  className = "",
-  ...props
-}) => {
+export const Textarea: React.FC<
+  React.TextareaHTMLAttributes<HTMLTextAreaElement>
+> = ({ className = "", ...props }) => {
   return (
     <textarea
       {...props}

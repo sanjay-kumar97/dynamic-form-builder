@@ -1,14 +1,8 @@
-import {
-  Fragment,
-  InputHTMLAttributes,
-  TextareaHTMLAttributes,
-  useCallback,
-  useContext,
-  useEffect,
-} from "react";
+import { Fragment, useCallback, useContext, useEffect } from "react";
 import { twMerge } from "tailwind-merge";
 
-import { BuilderContext, Element } from "@/providers/builderContext";
+import { BuilderContext } from "@/providers/builderContext";
+import { Element } from "@/types";
 import { Card } from "../ui/card";
 import { Checkbox } from "../ui/checkbox";
 import { Input } from "../ui/input";
@@ -53,7 +47,7 @@ const FormPreview = () => {
             <Input
               id={element.id}
               readOnly={isPreview}
-              {...(element?.properties as InputHTMLAttributes<HTMLInputElement>)}
+              {...(element?.properties as React.InputHTMLAttributes<HTMLInputElement>)}
             />
           </div>
         );
@@ -64,7 +58,7 @@ const FormPreview = () => {
             <Textarea
               id={element.id}
               readOnly={isPreview}
-              {...(element?.properties as TextareaHTMLAttributes<HTMLTextAreaElement>)}
+              {...(element?.properties as React.TextareaHTMLAttributes<HTMLTextAreaElement>)}
             />
           </div>
         );
@@ -75,7 +69,7 @@ const FormPreview = () => {
               id={element.id}
               readOnly={isPreview}
               disabled={isPreview}
-              {...(element?.properties as InputHTMLAttributes<HTMLInputElement>)}
+              {...(element?.properties as React.InputHTMLAttributes<HTMLInputElement>)}
             />
             <Label htmlFor={element.id} label="Checkbox Label" />
           </div>
@@ -103,11 +97,11 @@ const FormPreview = () => {
 
   return (
     <div className="w-[50%]">
-      <Card className="p-4 h-full">
+      <Card className="h-full">
         <h2 className="text-lg font-semibold mb-4">Form Preview</h2>
         <div
           id="preview-container"
-          className="min-h-[300px] max-h-[calc(100vh-7.5rem)] overflow-auto border-2 border-dashed border-gray-300 px-4 rounded flex flex-col"
+          className="flex max-h-[calc(100vh-7.5rem)] min-h-[300px] flex-col overflow-auto rounded border-2 border-dashed border-gray-300 px-4"
         >
           {formElements.length === 0 ? (
             <div

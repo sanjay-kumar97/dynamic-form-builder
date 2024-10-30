@@ -1,4 +1,4 @@
-import { DragEvent, useContext } from "react";
+import { useContext } from "react";
 
 import { BuilderContext } from "@/providers/builderContext";
 import { Card } from "../ui/card";
@@ -9,14 +9,14 @@ const FormElements = () => {
 
   return (
     <div className="w-[20%]">
-      <Card className="p-4 h-full">
+      <Card className="h-full">
         <h2 className="text-lg font-semibold mb-4">Available Elements</h2>
         <ul>
           {availableElements.map((element) => (
             <li
               key={element.id}
               draggable
-              onDragStart={(e: DragEvent<HTMLLIElement>) =>
+              onDragStart={(e: React.DragEvent<HTMLLIElement>) =>
                 handleDragStart(e, element, -1)
               }
               onDragEnd={handleDragEnd}

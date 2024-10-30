@@ -3,6 +3,7 @@ import { twMerge } from "tailwind-merge";
 
 import { BuilderContext } from "@/providers/builderContext";
 import { Card } from "../ui/card";
+import { IconStore } from "@/utils/icons";
 
 const FormProperties = () => {
   const {
@@ -31,8 +32,13 @@ const FormProperties = () => {
 
   return (
     <div id="form-properties" className="w-[30%]">
-      <Card className="p-4 h-full">
-        <h2 className="text-lg font-semibold mb-4">Form Properites</h2>
+      <Card className="h-full">
+        <div className="flex justify-between items-center mb-4">
+          <h2 className="text-lg font-semibold">Form Properites</h2>
+          {selectedIndex !== null && (
+            <IconStore.trash className="size-7 cursor-pointer rounded-md border border-red-500 p-1.5 text-red-500 hover:bg-red-500 hover:text-white" />
+          )}
+        </div>
         {selectedIndex !== null ? (
           <>
             <div className="flex gap-4 items-center">

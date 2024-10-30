@@ -1,4 +1,3 @@
-import React from "react";
 import { twMerge } from "tailwind-merge";
 
 interface CardProps {
@@ -10,7 +9,7 @@ export const Card: React.FC<CardProps> = ({ children, className }) => {
   return (
     <div
       className={twMerge(
-        "bg-white rounded-md border border-slate-200 p-4",
+        "bg-white rounded-md border border-slate-200 p-4 shadow",
         className
       )}
     >

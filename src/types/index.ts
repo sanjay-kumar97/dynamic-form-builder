@@ -1,14 +1,42 @@
+export type Property = {
+  label: string;
+  key: string;
+  value: string | number | boolean;
+  type?: string;
+  mode?: string;
+};
+
 export type Properties = {
+  attributes: Property[];
+  style: Property[];
+  validation: Property[];
+};
+
+export type ElementProperties = {
   label?: string;
-} & (
-  | React.InputHTMLAttributes<HTMLInputElement>
-  | React.TextareaHTMLAttributes<HTMLTextAreaElement>
-);
+  attributes?:
+    | React.InputHTMLAttributes<HTMLInputElement>
+    | React.TextareaHTMLAttributes<HTMLTextAreaElement>;
+  validation?: {
+    required: boolean;
+    minLength: number;
+    maxLength: number;
+    pattern: string;
+    errorMessage?: {
+      required: string;
+      minLength: string;
+      maxLength: string;
+      pattern: string;
+    };
+  };
+  style?: React.CSSProperties;
+};
 
 export type Element = {
   id: string;
   label: string;
-  properties?: Properties;
+  type: "input" | "textarea" | "checkbox";
+  properties?: ElementProperties;
 };
 
 export type DraggedElement = {
@@ -16,16 +44,13 @@ export type DraggedElement = {
   index: number;
 };
 
+export type PropertTabs = Array<"attributes" | "validation" | "style">;
+
+export type FormStatus = "preview" | "edit";
+
 export type ContextProps = {
   availableElements: Element[];
-  elementPropertyTabs: string[];
-  propertyValues: { [key: string]: { label: string; key: string }[] };
-  formElements: Element[];
-  dragOverIndex: number | null;
-  selectedIndex: number | null;
-  formStatus: "preview" | "published";
-  setSelectedIndex: (index: number | null) => void;
-  setFormElements: (elements: Element[]) => void;
+  elementPropertyTabs: PropertTabs;
   handleDragStart: (
     e: React.DragEvent<HTMLLIElement | HTMLDivElement>,
     element: Element,
